@@ -51,7 +51,7 @@ fi
 echo "Scanning for open ports ..." 
 nmap -iL probed.txt -oA scans/scanned.txt
 
-echo " Running eyewitness ..."
-eyewitness -f $pwd/probed.txt -d $1 --all-protocols
 
-mv /usr/share/eyewitness/$1 eyewitness/$1	
+echo "Wayback Urls"
+cat probed.txt | gau -o urls.txt
+
