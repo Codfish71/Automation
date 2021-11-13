@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 echo "give me a bottle of rum!"
 
 
@@ -48,10 +49,19 @@ else
 
 fi
 
-echo "Scanning for open ports ..." 
-nmap -iL probed.txt -oA scans/scanned.txt
+
+echo ""
+echo ""
+
+echo "Getting all Urls ..."
+cat probed.txt | gau -v -o urls.txt
 
 
-echo "Wayback Urls"
-cat probed.txt | gau -o urls.txt
+echo "Dirsearch For all the subdomains"
+dirsearch -l /home/pratham/Desktop/hunting/final.txt -e php,html,js,git,jsp,xml,gitignore  -x 301,302,400,401,402,403,404 -o /usr/share/dirsearch/dirs.txt; 
+cat /usr/share/dirsearch/dirs.txt | tee finalDirs.txt ;
+
+
+sort finalDirs.txt | uniq;
+
 
